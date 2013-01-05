@@ -14,7 +14,7 @@ lint = (callback) ->
       print data
 
 build = (callback) ->
-  coffee = spawn 'coffee', ['-w', '-j', 'game','-c','-o','js' ,'src']
+  coffee = spawn 'coffee', ['-j', 'game','-c','-o','js' ,'src']
   coffee.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
   coffee.stdout.on 'data', (data) ->
@@ -22,8 +22,20 @@ build = (callback) ->
   coffee.on 'exit', (code) ->
     callback?() if code is 0
 
+bake = (callback) ->
+    coffee = spawn 'coffee', ['-w', '-j', 'game','-c','-o','js' ,'src']
+    coffee.stderr.on 'data', (data) ->
+      process.stderr.write data.toString()
+    coffee.stdout.on 'data', (data) ->
+      print data.toString()
+    coffee.on 'exit', (code) -
+	
+
 task 'lint', 'lint all packages with coffeelint', ->
   lint()
 
 task 'build', 'Build js/ from s rc/', ->
   build()
+  
+task 'bake', 'Build and watch', ->
+	bake()
