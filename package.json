@@ -1,12 +1,12 @@
 {
-    "name": "game-off-2012"
+    "name": "revolt"
   , "description": "inverse tower defense"
-  , "version": "0.0.1"
+  , "version": "1.0.0"
   , "keywords": ["inverse tower", "game"]
   , "author": "devNil"
   , "repository": {
       "type": "git"
-    , "url": "https://github.com/devNil/game-off-2012.git"
+    , "url": "https://github.com/devNil/revolt.git"
   }
   , "devDependencies": {
       "coffee-script": "1.4.0"
