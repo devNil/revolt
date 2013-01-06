@@ -7,6 +7,8 @@ class Layer
 
 	render:->
 		@basectx.drawImage(@ctx.canvas,0, 0, @width, @height)
+	
+	getContext:->@ctx
 		
 		
 		
