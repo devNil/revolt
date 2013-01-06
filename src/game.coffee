@@ -1,5 +1,8 @@
 #main-method
 $ =>
+	@WIDTH = 640
+	@HEIGHT = 480
+	
 	prelude = new Prelude()
 	
 	@SPRITE = prelude.addImage("img/sprites.png")
@@ -11,10 +14,6 @@ $ =>
 #Game Class
 class Game
 	
-	WIDTH = 640
-	HEIGHT = 480
-	SCALE = 4
-	
 	constructor:->
 		@running = false;
 		@level = new Level()
@@ -22,7 +21,7 @@ class Game
 	init:=>
 		@canvas = document.getElementById("game")
 		@ctx = @canvas.getContext("2d")
-		@ctx.drawImage(SPRITE, 0, 0)
+		#@ctx.drawImage(SPRITE, 0, 0)
 		@start()
 		
 	
