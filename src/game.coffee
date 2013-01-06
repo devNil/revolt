@@ -33,10 +33,12 @@ class Game
 	
 	#tick-method
 	tick:->
+		@level.tick()
 		
 	
 	#render-method
 	render:->
+		@level.render()
 		
 		
 	run:=>
