@@ -8,7 +8,36 @@
 </head>
 <body>
 	<h1>Blank _revolt</h1>
-	<canvas id="game" width="640" height="480"></canvas>
+	<div id="gamecontainer" style="width:850px;" data-x="3000" data-y="0" data-scale="1">
+		<div id="cloneMenu" style="float:left; height:480px; width:200px;">
+			<table>
+				<tr>
+					<div style="float:left">Clone-Points: </div><div id="total">0</div>
+				</tr>
+				<tr>
+					<td>
+						Archer
+					</td>
+					<td>
+						<button class=".btn" entity="archer">
+						+
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Warrior
+					</td>
+					<td>
+						<button class=".btn" entity="warrior">
+						+
+						</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<canvas id="game" style="background-color: #92dcff;float:right;" width="640" height="480"></canvas>
+	</div>
 	<script src="js/game.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
