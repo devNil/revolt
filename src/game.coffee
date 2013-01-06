@@ -17,6 +17,7 @@ class Game
 	
 	constructor:->
 		@running = false;
+		@level = new Level()
 	
 	init:=>
 		@canvas = document.getElementById("game")
