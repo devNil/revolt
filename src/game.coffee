@@ -18,13 +18,27 @@ class Game
 	constructor:->
 		@running = false;
 	
-	init:->
+	init:=>
 		@canvas = document.getElementById("game")
 		@ctx = @canvas.getContext("2d")
 		@ctx.drawImage(SPRITE, 0, 0)
+		@start()
+		
+	
+	start:->
+		@running = true
+		@run()
+		
 	
 	#tick-method
-	tick:=>
+	tick:->
+		
 	
 	#render-method
-	render:=>
+	render:->
+		
+		
+	run:=>
+		@tick() if @running
+		@render()
+		window.requestAnimFrame(@run)
