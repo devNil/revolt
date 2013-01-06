@@ -1,5 +1,7 @@
 #main-method
-$ => 
+$ =>
+	prelude = new Prelude()
+	SPRITE = prelude.addImage("img/sprites.png")
 	GAME = new Game()
 
 #Game Class
@@ -10,4 +12,5 @@ class Game
 	SCALE = 4
 	
 	constructor:->
+	
 		
