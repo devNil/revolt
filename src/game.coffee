@@ -21,5 +21,3 @@ class Game
 		@canvas = document.getElementById("game")
 		@ctx = @canvas.getContext("2d")
 		@ctx.drawImage(SPRITE, 0, 0)
-	
-		
