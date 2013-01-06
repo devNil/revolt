@@ -1,6 +1,8 @@
 #main-method
-$ => console.log("Hello World")
+$ => 
+	GAME = new Game()
 
+#Game Class
 class Game
 	
 	WIDTH = 640
