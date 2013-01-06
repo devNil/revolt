@@ -5,4 +5,6 @@ class Level
 	
 	tick:->
 		
+		
 	render:->
+		@layer["entities"].render()
