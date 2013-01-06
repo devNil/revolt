@@ -16,8 +16,15 @@ class Game
 	SCALE = 4
 	
 	constructor:->
+		@running = false;
 	
 	init:->
 		@canvas = document.getElementById("game")
 		@ctx = @canvas.getContext("2d")
 		@ctx.drawImage(SPRITE, 0, 0)
+	
+	#tick-method
+	tick:=>
+	
+	#render-method
+	render:=>
