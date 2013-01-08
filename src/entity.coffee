@@ -20,13 +20,14 @@ class Cloud extends Entity
 		@y = 30
 		
 	render:(ctx)->
-		ctx.beginPath()
+		#ctx.beginPath()
 		for h in [0...3]
 			for w in [0...6]
 				char = @structure[w+h*6]
 				if char is "+"
-					ctx.rect(@x+16*w, @y+16*h, 16, 16)
+					SPRITE.draw(ctx, @x+(8*w), @y+8*h, 4)
 				
+<<<<<<< HEAD
 		ctx.fillStyle = 'white'
 		ctx.fill()
 		
@@ -47,3 +48,7 @@ class Group
   getEntities:->@entities
   addEntity:(entity)->@entities.add(entity)
   removeEntity:(entity)->@entities.del(entity)
+=======
+		#ctx.fillStyle = 'white'
+		#ctx.fill()
+>>>>>>> use cloud sprite
