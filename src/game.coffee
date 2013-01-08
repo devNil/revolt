@@ -5,7 +5,7 @@ $ =>
 	
 	prelude = new Prelude()
 	
-	@SPRITE = prelude.addImage("img/sprites.png")
+	@SPRITE = new Spritesheet(prelude.addImage("img/sprites.png"), 8)
 	@GAME = new Game()
 	
 	prelude.setOnCompletionTask(@GAME.init)
