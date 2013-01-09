@@ -3,13 +3,23 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<title>revolt</title>
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" charset="utf-8"/>
 	<script src="lib/prelude.js" type="text/javascript" charset="utf-8"></script>
 	<script src="lib/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<h1>Blank _revolt</h1>
 	<div id="gamecontainer" style="width:850px;" data-x="3000" data-y="0" data-scale="1">
-		<div id="cloneMenu" style="float:left; height:480px; width:200px;">
+		<div id="entitesMenu" style="float:left; height: 480px; width:240;">
+          <ul class="nav nav-list">
+            <li class="nav-header">Entities</li>
+            
+            <!-- Clone-Menu done with links, just an idea here
+            <li><a><div style="float:left">Clone-Points: </div><div id="total">0</div></a></li> 
+           	<li><a class=".btn" entity="archer" href="#">Add Archer</a></li>
+            <li><a class=".btn" entity="warrior" href="#">Add Warrior</a></li>-->
+            
 			<table>
 				<tr>
 					<div style="float:left">Clone-Points: </div><div id="total">0</div>
@@ -35,7 +45,16 @@
 					</td>
 				</tr>
 			</table>
-		</div>
+			
+                        <li class="divider"/></li>
+            <li class="nav-header">Groups</li>
+
+          </ul>
+          <div id="groupContainer">
+            <!-- Here will be the groupEntries -->
+          </div>
+     	</div>
+		
 		<canvas id="game" style="background-color: #92dcff;float:right;" width="640" height="480"></canvas>
 	</div>
 	<script src="js/game.js" type="text/javascript" charset="utf-8"></script>
