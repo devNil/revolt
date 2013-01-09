@@ -29,3 +29,21 @@ class Cloud extends Entity
 				
 		ctx.fillStyle = 'white'
 		ctx.fill()
+		
+
+# Creates a new group
+#   name = display name
+#   initEntities = Array or List of entities 
+#   (will be moved into a list anyway)
+class Group
+  constructor:(@name, initEntities)->
+    @entities = new List()
+    
+    if initEntities instanceof Array
+      @entities.add(entity) for entity in initEntities
+    if initEntities instanceof List
+      @entities = initEntities
+
+  getEntities:->@entities
+  addEntity:(entity)->@entities.add(entity)
+  removeEntity:(entity)->@entities.del(entity)
