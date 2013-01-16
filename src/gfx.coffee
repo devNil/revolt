@@ -11,6 +11,8 @@ class Layer
 	
 	getContext:->@ctx
 	
+	getScale:->@scale
+	
 class Spritesheet
 	constructor:(@img, @tilesize)-> 
 	
