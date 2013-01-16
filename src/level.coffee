@@ -1,8 +1,7 @@
 class Level
 	constructor:->
-		console.log(Game)
 		@entities = new Array()
-		@layer = {"entities":new Layer("game", WIDTH, HEIGHT, 1)}
+		@layer = {"entities":new Layer("game", WIDTH, HEIGHT, 3)}
 		@entities.push(new Cloud())
 	
 	tick:->
