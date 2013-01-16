@@ -16,8 +16,8 @@ class Cloud extends Entity
 		#+++++-
 		#--++++
 		@structure = ["-","-","+","+","-","-","+","+","+","+","+","-","-","+","+","+","+","+"]
-		@x = 30
-		@y = 30
+		@x = 30/3
+		@y = 30/3
 		
 	render:(ctx)->
 		#ctx.beginPath()
@@ -26,8 +26,7 @@ class Cloud extends Entity
 				char = @structure[w+h*6]
 				if char is "+"
 					SPRITE.draw(ctx, @x+(8*w), @y+8*h, 4)
-				
-<<<<<<< HEAD
+
 		ctx.fillStyle = 'white'
 		ctx.fill()
 		
@@ -48,7 +47,5 @@ class Group
   getEntities:->@entities
   addEntity:(entity)->@entities.add(entity)
   removeEntity:(entity)->@entities.del(entity)
-=======
 		#ctx.fillStyle = 'white'
 		#ctx.fill()
->>>>>>> use cloud sprite
