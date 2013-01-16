@@ -2,10 +2,12 @@ class Entity
 	constructor:->
 		@x = 0
 		@y = 0
+		@scale = 1
 	
 	setX:(@x)->
 	setY:(@y)->
 	setPosition:(@x, @y)->
+	setScale:(@scale)->
 	tick:->
 	render:(ctx)->
 
@@ -16,17 +18,17 @@ class Cloud extends Entity
 		#+++++-
 		#--++++
 		@structure = ["-","-","+","+","-","-","+","+","+","+","+","-","-","+","+","+","+","+"]
-		@x = 30/3
-		@y = 30/3
+		@x = 30
+		@y = 30
+		@scale = 3
 		
-	render:(ctx)->
+	render:(ctx, scale)->
 		#ctx.beginPath()
 		for h in [0...3]
 			for w in [0...6]
 				char = @structure[w+h*6]
 				if char is "+"
-					SPRITE.draw(ctx, @x+(8*w), @y+8*h, 4)
-
+					SPRITE.draw(ctx, (@x/@scale)+(8*w), (@y/@scale)+8*h, 4)
 		ctx.fillStyle = 'white'
 		ctx.fill()
 		
