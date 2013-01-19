@@ -2,12 +2,10 @@ class Entity
 	constructor:->
 		@x = 0
 		@y = 0
-		@scale = 1
 	
 	setX:(@x)->
 	setY:(@y)->
 	setPosition:(@x, @y)->
-	setScale:(@scale)->
 	tick:->
 	render:(ctx)->
 
