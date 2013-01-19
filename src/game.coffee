@@ -8,39 +8,44 @@ $ =>
 	@SPRITE = new Spritesheet(prelude.addImage("img/sprites.png"), 8)
 	@GAME = new Game()
 	
-	prelude.setOnCompletionTask(@GAME.init)
+	prelude.setOnCompletionTask(@GAME.render)
 	prelude.start()
 
 #Game Class
 class Game
 	
 	constructor:->
-		@running = false;
-		@level = new Level()
-	
-	init:=>
-		@canvas = document.getElementById("game")
+		@entitiesLayer = new Layer("screen", 640, 480, 4)
+		
+		@map = new Layer("screen", 640, 480, 10)
+		
+		@entities = new Array()
+		#@output = new Output()
+		
+		
+		
+		@data = [
+			-1,-1,-1,-1,-1,-1,-1,-1
+			,-1,-1,-1,-1,-1,-1,-1,-1
+			,-1,-1,-1,-1,-1,-1,-1,-1
+			,-1,-1,-1,-1,-1,-1,-1,-1
+			,0,0,0,0,0,0,0,0
+			,1,1,1,1,1,1,1,1
+		]
+		
+		@canvas = document.getElementById("screen")
 		@ctx = @canvas.getContext("2d")
-		#@ctx.drawImage(SPRITE, 0, 0)
-		@start()
-		
-	
-	start:->
-		@running = true
-		@run()
-		
-	
-	#tick-method
-	tick:->
-		@level.tick()
-		
 	
 	#render-method
-	render:->
-		@level.render()
+	render:=>
+		@map.clear()
 		
+		for y in [0...6]
+			for x in [0...8]
+				index = x + y * 8
+				if @data[index] is -1 then continue
+				SPRITE.draw(@map.getContext(), x*8, y*8, @data[index])
 		
-	run:=>
-		@tick() if @running
-		@render()
-		window.requestAnimFrame(@run)
+		@map.render()
+		
+		window.requestAnimFrame(@render)
