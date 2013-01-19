@@ -31,10 +31,10 @@ class Cloud extends Entity
 		ctx.fill()
 		
 
-class Soldier extends Entity
+class Warrior extends Entity
 	constructor:(@node)->
 		super()
-		@y = (4*8*10)/2-8 #baseline	
+		@y = (480/10)+(3*8)
 		@move = 1
 		@selected = false
 	
