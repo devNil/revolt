@@ -13,6 +13,9 @@ class Layer
 	
 	getScale:->@scale
 	
+	clear:->
+		@ctx.clearRect(0,0,@width,@height)
+	
 class Spritesheet
 	constructor:(@img, @tilesize)-> 
 	
