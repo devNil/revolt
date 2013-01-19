@@ -20,7 +20,7 @@
            	<li><a class=".btn" entity="archer" href="#">Add Archer</a></li>
             <li><a class=".btn" entity="warrior" href="#">Add Warrior</a></li>-->
             
-			<table>
+			<table id="actionbar">
 				<tr>
 					<div style="float:left">Clone-Points: </div><div id="total">0</div>
 				</tr>
@@ -46,16 +46,24 @@
 				</tr>
 			</table>
 			
-                        <li class="divider"/></li>
-            <li class="nav-header">Groups</li>
-
+            <li class="divider"/></li>
+            <li class="nav-header">Spawned</li>
           </ul>
-          <div id="groupContainer">
+          <div id="output">
             <!-- Here will be the groupEntries -->
+			<ul class="nav nav-tabs nav-stacked">
+			</ul>
           </div>
      	</div>
 		
-		<canvas id="game" style="background-color: #92dcff;float:right;" width="640" height="480"></canvas>
+		<canvas id="screen" style="background-color: #92dcff;float:right;" width="640" height="480"></canvas>
+	</div>
+	<div class="span5" style="clear:both;">
+		<div class="btn-group" id="controls">
+		  <button class="btn">Backward</button>
+		  <button class="btn">Forward</button>
+		  <button class="btn">Attack</button>
+		</div>
 	</div>
 	<script src="js/game.js" type="text/javascript" charset="utf-8"></script>
 </body>
