@@ -33,6 +33,38 @@ class Cloud extends Entity
 		ctx.fill()
 		
 
+class Soldier extends Entity
+	constructor:(@node)->
+		super()
+		@y = (4*8*10)/2-8 #baseline	
+		@move = 1
+		@selected = false
+	
+	setSelected:(@selected)->
+	
+	doRight:->
+		if @move > 0
+			@x += 8 
+			@move--
+	
+	doLeft:->
+		if @move <  1
+			@x -= 8 
+			@move++
+		
+	reset:->
+		@move = 1
+		@selected = false
+	
+	tick:->
+		#logic
+	
+	render:(ctx)->
+		SPRITE.draw(ctx, @x, @y, 17)
+		if @selected
+			ctx.fillStyle = "red"
+			ctx.fillRect(@x+3, @y-4, 2,2)
+
 # Creates a new group
 #   name = display name
 #   initEntities = Array or List of entities 
