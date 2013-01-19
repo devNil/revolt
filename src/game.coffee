@@ -8,6 +8,10 @@ $ =>
 	@SPRITE = new Spritesheet(prelude.addImage("img/sprites.png"), 8)
 	@GAME = new Game()
 	
+	bar = document.getElementById("actionbar").getElementsByTagName("button")
+	for i in [0...bar.length]
+		$(bar[i]).click(->GAME.add(this))
+	
 	prelude.setOnCompletionTask(@GAME.render)
 	prelude.start()
 
@@ -15,14 +19,15 @@ $ =>
 class Game
 	
 	constructor:->
+		@screen = new Layer("screen", 640, 480, 1)
 		@entitiesLayer = new Layer("screen", 640, 480, 4)
 		
 		@map = new Layer("screen", 640, 480, 10)
 		
 		@entities = new Array()
-		#@output = new Output()
 		
-		
+		@output = new EntityList()
+		@inputHandler = new InputHandler()
 		
 		@data = [
 			-1,-1,-1,-1,-1,-1,-1,-1
@@ -36,10 +41,14 @@ class Game
 		@canvas = document.getElementById("screen")
 		@ctx = @canvas.getContext("2d")
 	
+	add:(element)=>
+		if $(element).attr("entity") is "warrior"
+			node = @output.addEntity("Warrior")
+			@entities.push(new Warrior(node))
+	
 	#render-method
 	render:=>
-		@map.clear()
-		
+		@screen.clear()
 		for y in [0...6]
 			for x in [0...8]
 				index = x + y * 8
@@ -47,5 +56,12 @@ class Game
 				SPRITE.draw(@map.getContext(), x*8, y*8, @data[index])
 		
 		@map.render()
+		
+		@entitiesLayer.clear()
+		
+		for i in [0...@entities.length]
+			@entities[i].render(@entitiesLayer.getContext())
+		
+		@entitiesLayer.render()
 		
 		window.requestAnimFrame(@render)
