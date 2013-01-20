@@ -63,6 +63,38 @@ class Warrior extends Entity
 			ctx.fillStyle = "red"
 			ctx.fillRect(@x+3, @y-4, 2,2)
 
+class Archer extends Entity
+	constructor:(@node)->
+		super()
+		@y = (480/10)+(3*8)
+		@move = 1
+		@selected = false
+	
+	setSelected:(@selected)->
+	
+	doRight:->
+		if @move > 0
+			@x += 8 
+			@move--
+	
+	doLeft:->
+		if @move <  1
+			@x -= 8 
+			@move++
+		
+	reset:->
+		@move = 1
+		@selected = false
+	
+	tick:->
+		#logic
+	
+	render:(ctx)->
+		SPRITE.draw(ctx, @x, @y, 16)
+		if @selected
+			ctx.fillStyle = "red"
+			ctx.fillRect(@x+3, @y-4, 2,2)
+
 # Creates a new group
 #   name = display name
 #   initEntities = Array or List of entities 

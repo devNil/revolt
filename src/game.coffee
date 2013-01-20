@@ -45,7 +45,10 @@ class Game
 		if $(element).attr("entity") is "warrior"
 			node = @output.addEntity("Warrior")
 			@entities.push(new Warrior(node))
-	
+		else if $(element).attr("entity") is "archer"
+			node = @output.addEntity("Archer")
+			@entities.push(new Archer(node))
+				
 	#render-method
 	render:=>
 		@screen.clear()
