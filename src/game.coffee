@@ -29,7 +29,9 @@ class Game
 		@map = new Layer("screen", 640, 480, 10)
 		@cloneMenu = new CloneMenu()
 		@entities = new Array()
-		
+	
+		@enemySpawner = new EnemySpawner()
+
 		@output = new EntityList()
 		
 		@data = [
@@ -51,6 +53,7 @@ class Game
 		for i in [0...@entities.length]
 			@entities[i].reset()
 		this.addClonePoint(1)
+		@enemySpawner.tick()
 		INFO.setText("no entity is selected")
 	
 	add:(element)=>
@@ -77,11 +80,13 @@ class Game
 		
 		for i in [0...@entities.length]
 			@entities[i].render(@entitiesLayer.getContext())
-
+		
+		for i in [0...@enemySpawner.getEntities().length]
+			@enemySpawner.getEntities()[i].render(@entitiesLayer.getContext())
+		
 		@map.render()
 		@cloneMenu.setTotal(@clonePoint)
 		@entitiesLayer.render()
-		
 
 		@screen.render()
 		
