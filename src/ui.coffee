@@ -24,7 +24,6 @@ class InputHandler
 		@actual = null
 		
 		action = (element)=>
-			console.log($(element).attr(""))
 			if $(element).attr("action") is "forward"
 				@actual.doRight()
 			
@@ -34,7 +33,7 @@ class InputHandler
 			if $(element).attr("action") is "next"
 				GAME.tick()
 			
-			@actual.update()
+			@actual.update() if @actual?
 		
 		buttons = document.getElementById("controls").getElementsByTagName("button")
 		for i in [0...buttons.length]

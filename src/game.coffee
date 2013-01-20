@@ -9,7 +9,7 @@ $ =>
 	@GAME = new Game()
 	
 	@INFO = new Infobar()
-	@INFO.setText("No entities are selected")
+	@INFO.setText("no entity is selected")
 	
 	@INPUT = new InputHandler()
 	
@@ -47,6 +47,8 @@ class Game
 	tick:=>
 		for i in [0...@entities.length]
 			@entities[i].reset()
+		
+		INFO.setText("no entity is selected")
 	
 	add:(element)=>
 		if $(element).attr("entity") is "warrior"
@@ -59,20 +61,24 @@ class Game
 				
 	#render-method
 	render:=>
-		@screen.clear()
+		@ctx.clearRect(0, 0, WIDTH, HEIGHT)	
+		@map.clear()
+		@entitiesLayer.clear()
+		
 		for y in [0...6]
 			for x in [0...8]
 				index = x + y * 8
 				if @data[index] is -1 then continue
 				SPRITE.draw(@map.getContext(), x*8, y*8, @data[index])
 		
-		@map.render()
-		
-		@entitiesLayer.clear()
-		
 		for i in [0...@entities.length]
 			@entities[i].render(@entitiesLayer.getContext())
+	
+		@map.render()
 		
 		@entitiesLayer.render()
+		
+
+		@screen.render()
 		
 		window.requestAnimFrame(@render)
