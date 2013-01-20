@@ -174,7 +174,7 @@ class BadWarrior extends Entity
 		@selected = false
 	
 	tick:->
-		#logic
+		2#logic
 	
 	render:(ctx)->
 		SPRITE.draw(ctx, @x, @y, 19)
@@ -190,8 +190,23 @@ class EnemySpawner
 	getEntities:()->
 		@entities
 
+	# TODO: do it based on clonepoints usw. & improvement
+	tick:->
+		# Spawning logic
+		if @entities.length < GAME.entities.length		
+			if GAME.entities.length - @entities.length > 3
+				for i in [0...Math.floor(Math.random() * 3) + 1]
+					@spawn()
+		else
+			for i in [0...Math.floor(Math.random() * GAME.getClonePoints()) + 1]
+				@spawn()
+
+		# movement logic
+
 	spawn:->
 		if Math.random() > 0.5
 			@entities.push(new BadArcher())
+			console.log("new badarcher")
 		else
 			@entities.push(new BadWarrior())
+			console.log("new badwarrior")

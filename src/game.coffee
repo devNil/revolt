@@ -49,6 +49,17 @@ class Game
 		@clonePoint = @clonePoint + number
 	removeClonePoint:(number)=>
 		@clonePoint = @clonePoint - number
+
+	getClonePoints:->
+		@clonePoint
+
+	entitiesOnXCord:(x)->
+		c = 0
+		for entity in @entities
+			if entity.x == x
+				c++
+		return c
+	
 	tick:=>
 		for i in [0...@entities.length]
 			@entities[i].reset()
