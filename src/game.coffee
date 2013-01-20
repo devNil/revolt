@@ -25,9 +25,9 @@ class Game
 	constructor:->
 		@screen = new Layer("screen", 640, 480, 1)
 		@entitiesLayer = new Layer("screen", 640, 480, 4)
-		
+		@clonePoint = 6
 		@map = new Layer("screen", 640, 480, 10)
-		
+		@cloneMenu = new CloneMenu()
 		@entities = new Array()
 		
 		@output = new EntityList()
@@ -43,21 +43,25 @@ class Game
 		
 		@canvas = document.getElementById("screen")
 		@ctx = @canvas.getContext("2d")
-	
+	addClonePoint:(number)=>
+		@clonePoint = @clonePoint + number
+	removeClonePoint:(number)=>
+		@clonePoint = @clonePoint - number
 	tick:=>
 		for i in [0...@entities.length]
 			@entities[i].reset()
-		
+		this.addClonePoint(1)
 		INFO.setText("no entity is selected")
 	
 	add:(element)=>
-		if $(element).attr("entity") is "warrior"
+		if $(element).attr("entity") is "warrior" and @clonePoint > 0
 			node = @output.addEntity("Warrior")
 			@entities.push(new Warrior(node))
-		
-		if $(element).attr("entity") is "archer"
+			this.removeClonePoint(1)
+		if $(element).attr("entity") is "archer" and @clonePoint > 0
 			node = @output.addEntity("Archer")
 			@entities.push(new Archer(node))
+			this.removeClonePoint(1)
 				
 	#render-method
 	render:=>
@@ -73,9 +77,9 @@ class Game
 		
 		for i in [0...@entities.length]
 			@entities[i].render(@entitiesLayer.getContext())
-	
+
 		@map.render()
-		
+		@cloneMenu.setTotal(@clonePoint)
 		@entitiesLayer.render()
 		
 
