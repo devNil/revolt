@@ -79,8 +79,17 @@ class Archer extends Entity
 		@y = (480/10)+(3*8)
 		@move = 1
 		@selected = false
+		@hp = 10
+		onclick = => 
+			INFO.setText("Archer:"+"movepoints"+@move+" HP:"+@hp)
+			INPUT.setActual(@)
+		
+		$(@node).click(onclick)
 	
 	setSelected:(@selected)->
+	
+	update:=>
+		INFO.setText("Archer:"+"movepoints"+@move+" HP:"+@hp)
 	
 	doRight:->
 		if @move > 0
