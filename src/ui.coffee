@@ -1,6 +1,10 @@
 class Infobar
 	constructor:->
-		document.getElementById("output").getElementsByTagName("ul")[0]
+		@infotext = document.getElementById("info")
+	
+	setText:(text)->
+		$(@infotext).text(text)
+		
 
 class EntityList
 	constructor:->
@@ -20,11 +24,13 @@ class InputHandler
 		@actual = null
 		
 		action = (element)=>
+			console.log($(element).attr(""))
 			if $(element).attr("action") is "forward"
 				@actual.doRight()
 			
 			if $(element).attr("action") is "backward"
 				@actual.doLeft()
+			
 			@actual.update()
 		
 		buttons = document.getElementById("controls").getElementsByTagName("button")

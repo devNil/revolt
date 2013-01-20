@@ -8,6 +8,11 @@ $ =>
 	@SPRITE = new Spritesheet(prelude.addImage("img/sprites.png"), 8)
 	@GAME = new Game()
 	
+	@INFO = new Infobar()
+	@INFO.setText("No entities are selected")
+	
+	@INPUT = new InputHandler()
+	
 	bar = document.getElementById("actionbar").getElementsByTagName("button")
 	for i in [0...bar.length]
 		$(bar[i]).click(->GAME.add(this))
@@ -26,7 +31,6 @@ class Game
 		@entities = new Array()
 		
 		@output = new EntityList()
-		@inputHandler = new InputHandler()
 		
 		@data = [
 			-1,-1,-1,-1,-1,-1,-1,-1

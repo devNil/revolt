@@ -37,10 +37,18 @@ class Warrior extends Entity
 		@y = (480/10)+(3*8)
 		@move = 1
 		@selected = false
-		onclick = => console.log(@move)
+		@hp = 10
+		onclick = => 
+			INFO.setText("Warrior:"+"movepoints"+@move+" HP:"+@hp)
+			INPUT.setActual(@)
+			
+		
 		$(@node).click(onclick)
 	
 	setSelected:(@selected)->
+	
+	update:=>
+		INFO.setText("Warrior:"+"movepoints"+@move+" HP:"+@hp)
 	
 	doRight:->
 		if @move > 0
