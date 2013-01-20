@@ -31,6 +31,9 @@ class InputHandler
 			if $(element).attr("action") is "backward"
 				@actual.doLeft()
 			
+			if $(element).attr("action") is "next"
+				GAME.tick()
+			
 			@actual.update()
 		
 		buttons = document.getElementById("controls").getElementsByTagName("button")

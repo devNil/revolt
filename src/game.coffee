@@ -44,6 +44,10 @@ class Game
 		@canvas = document.getElementById("screen")
 		@ctx = @canvas.getContext("2d")
 	
+	tick:=>
+		for i in [0...@entities.length]
+			@entities[i].reset()
+	
 	add:(element)=>
 		if $(element).attr("entity") is "warrior"
 			node = @output.addEntity("Warrior")
