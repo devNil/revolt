@@ -17,7 +17,6 @@ $ =>
 
 #Game Class
 class Game
-	
 	constructor:->
 		@screen = new Layer("screen", 640, 480, 1)
 		@entitiesLayer = new Layer("screen", 640, 480, 4)
@@ -45,7 +44,8 @@ class Game
 		if $(element).attr("entity") is "warrior"
 			node = @output.addEntity("Warrior")
 			@entities.push(new Warrior(node))
-		else if $(element).attr("entity") is "archer"
+		
+		if $(element).attr("entity") is "archer"
 			node = @output.addEntity("Archer")
 			@entities.push(new Archer(node))
 				
