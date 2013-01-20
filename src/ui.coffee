@@ -1,3 +1,7 @@
+class Infobar
+	constructor:->
+		document.getElementById("output").getElementsByTagName("ul")[0]
+
 class EntityList
 	constructor:->
 		@output = document.getElementById("output").getElementsByTagName("ul")[0]
