@@ -65,6 +65,10 @@ class Game
 			@entities[i].reset()
 		this.addClonePoint(1)
 		@enemySpawner.tick()
+		for enemy in @enemySpawner.getEntities()
+			enemy.reset()
+			enemy.tick()
+
 		INFO.setText("no entity is selected")
 	
 	add:(element)=>

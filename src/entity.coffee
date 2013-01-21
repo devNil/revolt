@@ -120,21 +120,25 @@ class Archer extends Entity
 class BadArcher extends Entity
 	constructor:->
 		super()
-		console.log("New bad archer")
 		@x = (640/10)+(11*8)
 		@y = (480/10)+(3*8)
 		@move = 1
 		@selected = false
 		@hp = 10
+		@battleMood = 'a'
 	
+
+	setMood:(mood)->
+		@battleMood = mood
+
 	doRight:->
 		if @move > 0
-			@x -= 8 
+			@x += 8 
 			@move++
 	
 	doLeft:->
-		if @move <  1
-			@x += 8 
+		if @move > 0
+			@x -= 8
 			@move--
 		
 	reset:->
@@ -142,7 +146,8 @@ class BadArcher extends Entity
 		@selected = false
 	
 	tick:->
-		#logic
+		@doLeft() if @battleMood == 'a'
+		@doRight() if @battleMood == 'd' and @x < 152
 	
 	render:(ctx)->
 		SPRITE.draw(ctx, @x, @y, 18)
@@ -158,24 +163,31 @@ class BadWarrior extends Entity
 		@move = 1
 		@selected = false
 		@hp = 10
-	
+		# 'a' -> attack
+		# 'd' -> defensive
+		@battleMood = 'a'
+
+	setMood:(mood)->
+		@battleMood = mood
+
 	doRight:->
 		if @move > 0
 			@x += 8 
-			@move--
+			@move++
 	
 	doLeft:->
-		if @move <  1
+		if @move > 0
 			@x -= 8 
-			@move++
+			@move--
 		
 	reset:->
 		@move = 1
 		@selected = false
 	
 	tick:->
-		2#logic
-	
+		@doLeft() if @battleMood == 'a'
+		@doRight() if @battleMood == 'd' and @x < 152
+
 	render:(ctx)->
 		SPRITE.draw(ctx, @x, @y, 19)
 		if @selected
@@ -190,23 +202,23 @@ class EnemySpawner
 	getEntities:()->
 		@entities
 
-	# TODO: do it based on clonepoints usw. & improvement
 	tick:->
-		# Spawning logic
-		if @entities.length < GAME.entities.length		
-			if GAME.entities.length - @entities.length > 3
-				for i in [0...Math.floor(Math.random() * 3) + 1]
-					@spawn()
-		else
-			for i in [0...Math.floor(Math.random() * GAME.getClonePoints()) + 1]
-				@spawn()
+		mood = 'a'
+		# If player has more: hide and spawn!
+		if GAME.entities.length - @entities.length > 3
+			mood = 'd'
 
-		# movement logic
+		if @entities.length - GAME.entities.length > 3
+			mood = 'a'
+		
+		for entity in @entities
+			entity.setMood(mood)
+
+		for i in [0...Math.floor(Math.random() * GAME.getClonePoints()) + 1]
+			@spawn()
 
 	spawn:->
 		if Math.random() > 0.5
 			@entities.push(new BadArcher())
-			console.log("new badarcher")
 		else
 			@entities.push(new BadWarrior())
-			console.log("new badwarrior")
