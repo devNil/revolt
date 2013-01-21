@@ -71,7 +71,7 @@ class Game
 			
 			@entities[i].reset()			
 			
-			xpos = @entities[i].getX()+8
+			xpos = @entities[i].getX()
 			
 			for j in [0...@enemySpawner.getEntities().length]
 				opposite = @enemySpawner.getEntities()[j]
