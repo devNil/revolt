@@ -91,7 +91,7 @@ class Archer extends Entity
 		@selected = false
 		@hp = 10
 		onclick = => 
-			INFO.setText("Archer "+" | movepoints"+@move+" | HP:"+@hp)
+			INFO.setText("Archer "+" | movepoints: "+@move+" | HP: "+@hp)
 			INPUT.setActual(@)
 		
 		$(@node).click(onclick)
@@ -99,7 +99,7 @@ class Archer extends Entity
 	setSelected:(@selected)->
 	
 	update:=>
-		INFO.setText("Archer "+" | movepoints"+@move+" | HP:"+@hp)
+		INFO.setText("Archer "+" | movepoints: "+@move+" | HP: "+@hp)
 	
 	doRight:->
 		if @move > 0
@@ -216,13 +216,13 @@ class EnemySpawner
 		if GAME.entities.length - @entities.length > 3
 			mood = 'd'
 
-		if @entities.length - GAME.entities.length > 3
+		if @entities.length - GAME.entities.length > 5
 			mood = 'a'
 		
 		for entity in @entities
 			entity.setMood(mood)
 
-		for i in [0...Math.floor(Math.random() * GAME.getClonePoints()) + 1]
+		for i in [0...Math.floor(Math.random() * (GAME.getClonePoints() - 1)) + 1]
 			@spawn()
 
 	spawn:->

@@ -2,7 +2,7 @@
 $ =>
 	@WIDTH = 640
 	@HEIGHT = 480
-	@SCALE = 10	
+	@SCALE = 10
 	prelude = new Prelude()
 	
 	@SPRITE = new Spritesheet(prelude.addImage("img/sprites.png"), 8)
@@ -68,9 +68,14 @@ class Game
 				@entities.splice(i, 1)
 				continue
 			
-			@entities[i].reset()			
+			@entities[i].reset()
 			
 			xpos = @entities[i].getX()+8
+			
+			if xpos >= 152
+				INPUT.freezeAll()
+				alert("Du hast gewonnen!")
+				return
 			
 			for j in [0...@enemySpawner.getEntities().length]
 				opposite = @enemySpawner.getEntities()[j]
