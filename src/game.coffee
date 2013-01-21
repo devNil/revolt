@@ -64,7 +64,8 @@ class Game
 		for i in [0...@entities.length]
 			now = @entities[i]
 			
-			if now.getHp() is 0 
+			if now.getHp() <= 0 
+				now.delete()
 				@entities.splice(i, 1)
 				continue
 			
@@ -74,7 +75,7 @@ class Game
 			
 			for j in [0...@enemySpawner.getEntities().length]
 				opposite = @enemySpawner.getEntities()[j]
-				opposite_x = opposite.getX()-8 if opposite_x?
+				opposite_x = opposite.getX()-8				
 				if opposite_x is xpos
 					now.setStopped(true)
 					opposite.setStopped(true)

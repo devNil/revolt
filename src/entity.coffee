@@ -16,6 +16,7 @@ class Entity
 	getHp:->@hp
 	getX:->@x
 	setHp:(@hp)->
+	delete:->
 
 class Cloud extends Entity
 	constructor:->
@@ -81,7 +82,9 @@ class Warrior extends Entity
 		if @selected
 			ctx.fillStyle = "red"
 			ctx.fillRect(@x+3, @y-4, 2,2)
-
+		
+	delete:->
+		$(@node).remove()
 
 class Archer extends Entity
 	constructor:(@node)->
@@ -123,6 +126,9 @@ class Archer extends Entity
 		if @selected
 			ctx.fillStyle = "red"
 			ctx.fillRect(@x+3, @y-4, 2,2)
+			
+	delete:->
+		$(@node).remove()
 
 
 class BadArcher extends Entity
@@ -145,7 +151,7 @@ class BadArcher extends Entity
 			@move++
 	
 	doLeft:->
-		if @move > 0 and @stopped != true
+		if @move > 0 and @stopped is not true
 			@x -= 8
 			@move--
 		
@@ -184,7 +190,7 @@ class BadWarrior extends Entity
 			@move++
 	
 	doLeft:->
-		if @move > 0 and @stopped != true
+		if @move > 0 and @stopped is not true
 			@x -= 8 
 			@move--
 		
