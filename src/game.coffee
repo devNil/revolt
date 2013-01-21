@@ -62,7 +62,27 @@ class Game
 	
 	tick:=>
 		for i in [0...@entities.length]
-			@entities[i].reset()
+			now = @entities[i]
+			
+			if now.getHp() is 0 
+				@entities.splice(i, 1)
+				continue
+			
+			@entities[i].reset()			
+			
+			xpos = @entities[i].getX()+8
+			
+			for j in [0...@enemySpawner.getEntities().length]
+				opposite = @enemySpawner.getEntities()[j]
+				opposite_x = opposite.getX()-8 if opposite_x?
+				if opposite_x is xpos
+					now.setStopped(true)
+					opposite.setStopped(true)
+					now.setHp(now.getHp()-opposite.getAp())
+					opposite.setHp(opposite.getHp()-now.getAp())
+				
+				if opposite.getHp() is 0 then @enemySpawner.getEntities().splice(j, 1)
+			
 		this.addClonePoint(1)
 		@enemySpawner.tick()
 		for enemy in @enemySpawner.getEntities()

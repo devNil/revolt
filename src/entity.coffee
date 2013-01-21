@@ -2,12 +2,20 @@ class Entity
 	constructor:->
 		@x = 0
 		@y = 0
+		@stopped = false
+		@ap = 10
+		@hp = 10
 	
 	setX:(@x)->
 	setY:(@y)->
 	setPosition:(@x, @y)->
 	tick:->
 	render:(ctx)->
+	setStopped:(@stopped)->
+	getAp:->@ap
+	getHp:->@hp
+	getX:->@x
+	setHp:(@hp)->
 
 class Cloud extends Entity
 	constructor:->
@@ -137,7 +145,7 @@ class BadArcher extends Entity
 			@move++
 	
 	doLeft:->
-		if @move > 0
+		if @move > 0 and @stopped != true
 			@x -= 8
 			@move--
 		
@@ -176,7 +184,7 @@ class BadWarrior extends Entity
 			@move++
 	
 	doLeft:->
-		if @move > 0
+		if @move > 0 and @stopped != true
 			@x -= 8 
 			@move--
 		
