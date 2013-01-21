@@ -2,7 +2,7 @@
 $ =>
 	@WIDTH = 640
 	@HEIGHT = 480
-	
+	@SCALE = 10	
 	prelude = new Prelude()
 	
 	@SPRITE = new Spritesheet(prelude.addImage("img/sprites.png"), 8)
@@ -86,6 +86,11 @@ class Game
 		this.addClonePoint(1)
 		@enemySpawner.tick()
 		for enemy in @enemySpawner.getEntities()
+			if enemy.x == 0
+				INPUT.freezeAll()
+				alert("Du hast verloren!")
+				return
+
 			enemy.reset()
 			enemy.tick()
 

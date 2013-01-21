@@ -4,7 +4,6 @@ class Infobar
 	
 	setText:(text)->
 		$(@infotext).text(text)
-		
 
 class EntityList
 	constructor:->
@@ -43,3 +42,8 @@ class InputHandler
 		@actual.setSelected(false) if @actual?
 		@actual = actual
 		@actual.setSelected(true)
+
+	freezeAll:->
+		buttons = document.getElementsByTagName('button')
+		for i in [0...buttons.length]
+			buttons[i].disabled = true
