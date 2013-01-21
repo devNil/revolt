@@ -48,7 +48,7 @@ class Warrior extends Entity
 		@selected = false
 		@hp = 10
 		onclick = => 
-			INFO.setText("Warrior:"+"movepoints"+@move+" HP:"+@hp)
+			INFO.setText("Warrior "+"| movepoints: "+@move+" | HP: "+@hp)
 			INPUT.setActual(@)
 			
 		
@@ -57,7 +57,7 @@ class Warrior extends Entity
 	setSelected:(@selected)->
 	
 	update:=>
-		INFO.setText("Warrior:"+"movepoints"+@move+" HP:"+@hp)
+		INFO.setText("Warrior "+"| movepoints: "+@move+" | HP: "+@hp)
 	
 	doRight:->
 		if @move > 0
@@ -91,7 +91,7 @@ class Archer extends Entity
 		@selected = false
 		@hp = 10
 		onclick = => 
-			INFO.setText("Archer:"+"movepoints"+@move+" HP:"+@hp)
+			INFO.setText("Archer "+" | movepoints"+@move+" | HP:"+@hp)
 			INPUT.setActual(@)
 		
 		$(@node).click(onclick)
@@ -99,7 +99,7 @@ class Archer extends Entity
 	setSelected:(@selected)->
 	
 	update:=>
-		INFO.setText("Archer:"+"movepoints"+@move+" HP:"+@hp)
+		INFO.setText("Archer "+" | movepoints"+@move+" | HP:"+@hp)
 	
 	doRight:->
 		if @move > 0
